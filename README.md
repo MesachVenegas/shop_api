@@ -1,21 +1,22 @@
-# Guía para la creación de un API REST usando TypeScript y NodeJs.
+# 📚 Guía para la creación de un API REST usando TypeScript y NodeJs.
 
 Esta es una guía hecha para recordar y afianzar la construcción de un API, es un repo mas a modo explicativo y de notas y recodatorio para realizar un API REST, pretendo incorporar varias librerías, asi como aprender nuevas y su funcionamiento basico entre ellas estare trabajando con las siguientes:
 
 - TypeScript
 - NodeJs
+- Express
 
 como base principal del proyecto, ademas de las siguientes librerías
 > 💡 Ire agregando mas con forme el API valla creciendo.
 
-- Express
+
 - Prisma
 - Cors
 - Morgan
 - Bcrypt
 - Dotenv
 
-## Configuraciones básicas del proyecto.
+## 🛠️ Configuraciones básicas del proyecto.
 
 Para comenzar el proyecto procederemos a crear la carpeta contenedora del mismo y nos colocamos dentro de la misma.
 
@@ -47,15 +48,15 @@ lo cual nos creara un archivo llamado ```package.json``` donde podremos encontra
 }
 ```
 
-### Configurando TypeScript
+### ⚙️ Configurando TypeScript
 
 Ahora bien procederemos a instalar TypeScript y iniciar su configuración para ello podemos usar el siguiente comando:
 
 ```bash
-npm i typescript -D -E
+npm i typescript -D
 ```
 
-una vez esta instalado podemos agregar un nuevo script en nuestro package.json para trabajar con typescript, en este caso seria un script para el compilador le pueden poner el nombre que gustes yo lo llamare ```build```
+una vez esta instalado podemos agregar un nuevo script en nuestro package.json para trabajar con typescript, en este caso seria un script para el compilador le pueden poner el nombre que gusten yo lo llamare ```build```
 
 ```json
 {
@@ -109,7 +110,7 @@ Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajus
 }
 ```
 
-### Instalacion de dependencies.
+### 📥 Instalacion de dependencies.
 
 Ahora con TypeScript listo para trabajar instalaremos las dependencias básicas de nuestro proyecto y las dependencias de desarrollo:
 
@@ -128,7 +129,7 @@ bun i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/co
 npm i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/cors
 ```
 
-### Scripts funcionales.
+### 🔧 Scripts funcionales.
 
 Bien hasta ahora ya tenemos todo lo necesario para trabajar, solo faltan un par de ajustes mas como nuestros scripts para desarrollo, producción y pruebas. por el momento creemos nuestros scripts de producción y desarrollo, para ello volvemos a nuestro package.json y agregamos lo siguiente:
 

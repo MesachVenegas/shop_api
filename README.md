@@ -2,12 +2,10 @@
 
 Esta es una guía hecha para recordar y afianzar la construcción de un API, es un repositorio mas a modo explicativo y de notas para realizar un API REST, pretendo incorporar varias librerías, asi como aprender nuevas y su funcionamiento básico.
 
-<div align="center" style="display:flex; justify-content:center; align-items:center; gap:40px; padding:40px " >
-  <img src="./public/nodejs.svg" alt="NodeJs" width="70" title="NodeJs">
-  <img src="./public/typescript.svg" alt="TypeScript" width="80" title="TypeScript">
-  <img src="./public/expressjs.svg" alt="ExpressJs" width="80" title="ExpressJs">
-  <img src="./public/prisma.svg" alt="Prisma" width="60" title="Prisma">
-</div>
+![NodeJs](/public/nodejs.svg){: .text-center style="width: 80px;"}
+![TypesScript](/public/typescript.svg){: .text-center style="width: 80px;"}
+![Express](/public/expressjs.svg){: .text-center style="width: 80px; .m-10"}
+![Prisma](/public/prisma.svg){: .text-center style="width: 80px;"}
 
 como base principal del proyecto, ademas de las siguientes librerías
 > 💡 Ire agregando mas con forme el API valla creciendo.

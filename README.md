@@ -1,6 +1,6 @@
 # 📚 Guía para la creación de un API REST usando TypeScript y NodeJs.
 
-Esta es una guía hecha para recordar y afianzar la construcción de un API, es un repo mas a modo explicativo y de notas y recodatorio para realizar un API REST, pretendo incorporar varias librerías, asi como aprender nuevas y su funcionamiento basico entre ellas estare trabajando con las siguientes:
+Esta es una guía hecha para recordar y afianzar la construcción de un API, es un repositorio mas a modo explicativo y de notas para realizar un API REST, pretendo incorporar varias librerías, asi como aprender nuevas y su funcionamiento basico entre ellas estare trabajando con las siguientes:
 
 - TypeScript
 - NodeJs
@@ -143,3 +143,10 @@ Bien hasta ahora ya tenemos todo lo necesario para trabajar, solo faltan un par 
 }
 ```
 
+## 🗄️ Configurando Prisma y la base de datos.
+
+Prisma es un ORM como lo es Sequelize entre otros, utilizare este ya que me pare mas sencillo de utilizar en comparacion con Sequelize, fuero de eso no hay una gran diferencia permite conectase a diversas bases de datos. Para poder empezar a trabajar con prisma hay que inicializarlo en nuestro proyecto para ello seguiremos una serie de pasos que al finalizar nos permitirá tener una base de datos conectada y funcional, con nuestros modelos, semillas y migraciones.
+
+### 🏁 Inicializando Prisma.
+
+Ya vimos como configurar nuestro proyecto ahora configuraremos nuestro ORM para trabar con el. Como ya hemos instalado Prisma en los pasos anteriores, ya podemos acceder a la linea de comandos de prisma por lo que ejecutaremos el comando de inicio que nos creara una nueva carpeta llamada ```prisma```, y un archivo ```.env```, dentro de la carpeta prisma tendremos un archivo llamado  ```prisma.schema``` en cual contiene las variables de conexión con nuestra base de datos y el esquema de los modelos que usaremos(tablas o entidades).

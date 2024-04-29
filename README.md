@@ -1,19 +1,19 @@
-# Guía para la creación de un API REST usando TypeScript y Prisma con Express.
+# Guía para la creación de un API REST usando TypeScript y NodeJs.
 
 Esta es una guía hecha para recordar y afianzar la construcción de un API, es un repo mas a modo explicativo y de notas y recodatorio para realizar un API REST, pretendo incorporar varias librerías, asi como aprender nuevas y su funcionamiento basico entre ellas estare trabajando con las siguientes:
 
-- Express
-- Prisma
 - TypeScript
 - NodeJs
 
 como base principal del proyecto, ademas de las siguientes librerías
-> Ire agregando mas con forme el API valla creciendo.
+> 💡 Ire agregando mas con forme el API valla creciendo.
 
-- cors
-- morgan
-- bcrypt
-- dotenv
+- Express
+- Prisma
+- Cors
+- Morgan
+- Bcrypt
+- Dotenv
 
 ## Configuraciones básicas del proyecto.
 
@@ -71,7 +71,7 @@ una vez esta listo esto procedemos a ejecutar el comando de la siguiente manera
 ```bash
 npm run build -- --init
 ```
-> Este comando nos inicializa la configuración de typescript en el proyecto, creandonos un archivo tsconfig.json en la raíz de nuestro proyecto. El cual cuenta con un template de las configuraciones que se pueden realizar.
+> 🔎 Este comando nos inicializa la configuración de typescript en el proyecto, creandonos un archivo tsconfig.json en la raíz de nuestro proyecto. El cual cuenta con un template de las configuraciones que se pueden realizar.
 
 Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajustar las verificaciones que debe realizar en el compilado de nuestra app. En mi caso usare solo las siguientes configuraciones:
 
@@ -86,6 +86,7 @@ Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajus
     "outDir": "./build", 
     // Indica el modo de compatibilidad de los módulos en este caso para que puede trabajar con las 2 formas.
     "esModuleInterop": true,
+    //
     "forceConsistentCasingInFileNames": true,
     // Verifica que no se hayan declarado variables sin utilizar
     "noUnusedLocals": true,
@@ -97,9 +98,10 @@ Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajus
     "noFallthroughCasesInSwitch": true,
     // Establece el modo de inspeccion estricta.
     "strict": true,
+    //
     "skipLibCheck": true,
     // establece un alias, para las rutas relativas.
-     "paths": {
+    "paths": {
       "@/*": ["./*"]
     }
   },
@@ -112,14 +114,16 @@ Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajus
 Ahora con TypeScript listo para trabajar instalaremos las dependencias básicas de nuestro proyecto y las dependencias de desarrollo:
 
 ```bash
-#NPM
-npm i express morgan cors bcrypt dotenv @prisma/client
 #BUN
 bun i express morgan cors bcrypt dotenv @prisma/client
+#NPM
+npm i express morgan cors bcrypt dotenv @prisma/client
 ```
 Ahora las dependencias de desarrollo:
 
 ```bash
+#BUN
+bun i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/cors
 #NPM
 npm i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/cors
 ```
@@ -131,7 +135,7 @@ Bien hasta ahora ya tenemos todo lo necesario para trabajar, solo faltan un par 
 ```json
 {
   "scripts": {
-    "start": "node build/index.js",
+    "start": "node build/index.js", 
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc",
   }

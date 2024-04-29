@@ -1,4 +1,5 @@
 # Dirs
+.vscode
 build
 node_modules
 

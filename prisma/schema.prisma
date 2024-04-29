@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+//? Registro de usuarios del sistema
+model User {
+  id            String   @id @default(cuid()) @map("_id") @db.ObjectId
+  avatar_url    String?
+  username      String   @unique
+  name          String?
+  last_name     String?
+  password      String
+  role          Role     @default(user)
+  is_active     Boolean  @default(true)
+  registered_at DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  outlays Outlay[]
+  orders  Order[]
+}
+
+//? Registro de los clientes de la empresa
+model Client {
+  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
+  avatar_url  String?  @default("/assets/default-avatar.png")
+  name        String
+  last_name   String
+  email       String?  @unique
+  phone       String   @unique
+  address     String
+  type        Buyer    @default(minors)
+  register_at DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  orders Order[]
+}
+
+//? Registro de provedores
+model Providers {
+  id          String   @id @default(uuid()) @map("_id") @db.ObjectId
+  avatar_url  String?
+  name        String
+  email       String?  @unique
+  phone       String   @unique
+  address     String?
+  registed_at DateTime @default(now())
+  update_at   DateTime @updatedAt
+
+  outlays Outlay[]
+}
+
+//? Registro de ordenes generadas
+model Order {
+  id             String   @id @default(cuid()) @map("_id") @db.ObjectId
+  client_id      String   @db.ObjectId
+  user_id        String   @db.ObjectId
+  addressed_name String
+  pkg_long       Float
+  pkg_width      Float
+  pkg_height     Float
+  pkg_weight     Float
+  type           Delivery
+  total          Float
+  payment_type   Payment  @default(cash)
+  is_complete    Boolean  @default(false)
+  is_cancelled   Boolean  @default(false)
+  registed_at    DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  products_inOrder ProductsInOrder[]
+  payment_cash     PaymentCashByOrder[]
+  client           Client               @relation(fields: [client_id], references: [id], onDelete: Cascade)
+  user             User                 @relation(fields: [user_id], references: [id])
+}
+
+//? Registro de los gastos generados
+model Outlay {
+  id          String   @id @default(uuid()) @map("_id") @db.ObjectId
+  user_id     String   @db.ObjectId
+  provider_id String   @db.ObjectId
+  description String
+  mount       Float
+  pieces      Int      @default(0)
+  created_at  DateTime @default(now())
+
+  user     User      @relation(fields: [user_id], references: [id])
+  provider Providers @relation(fields: [provider_id], references: [id])
+}
+
+//? Registro de productos disponibles
+model Product {
+  id            String   @id @default(uuid()) @map("_id") @db.ObjectId
+  name          String
+  description   String?
+  delivery_type String
+  cost          Float    @default(0)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  products_inOrders ProductsInOrder[]
+}
+
+//? Registro de los productos de una orden
+model ProductsInOrder {
+  id         String  @id @default(uuid()) @map("_id") @db.ObjectId
+  order_id   String  @db.ObjectId
+  product_id String  @db.ObjectId
+  size       String?
+  quanty     Int     @default(1)
+  price      Float
+
+  oders    Order   @relation(fields: [order_id], references: [id])
+  products Product @relation(fields: [product_id], references: [id])
+}
+
+//? Registro de el tipo de moneadas con el que se completo una orden
+model PaymentCashByOrder {
+  id        String @id @default(cuid()) @map("_id")
+  order_id  String @db.ObjectId
+  money_500 Float?
+  money_200 Float?
+  money_100 Float?
+  money_50  Float?
+  money_20  Float?
+  coin_20   Float?
+  coin_10   Float?
+  coin_5    Float?
+  coin_2    Float?
+  coin_1    Float?
+  coin_50   Float?
+
+  order Order @relation(fields: [order_id], references: [id])
+}
+
+//? Tipos de pagos permitidos
+enum Payment {
+  cash
+  card
+  transfer
+  partial
+}
+
+//? Tipos de envios permitidos
+enum Delivery {
+  land
+  air
+}
+
+//? Tipos de clientes
+enum Buyer {
+  wholesaler
+  minors
+}
+
+//? Tipo de roles de usuario
+enum Role {
+  user
+  admin
+}

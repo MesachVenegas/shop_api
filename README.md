@@ -6,7 +6,7 @@ Esta es una guía hecha para recordar y afianzar la construcción de un API, es 
   <img src="./public/nodejs.svg" alt="NodeJs" width="70" title="NodeJs">
   <img src="./public/typescript.svg" alt="TypeScript" width="80" title="TypeScript">
   <img src="./public/expressjs.svg" alt="ExpressJs" width="80" title="ExpressJs">
-  <img src="./public/prisma.svg" alt="Prisma" width="60" title="Prisma">
+  <img src="./public/mysql.svg" alt="Prisma" width="60" title="MySQL">
 </div>
 
 como base principal del proyecto, ademas de las siguientes librerías
@@ -133,11 +133,11 @@ Bien hasta ahora ya tenemos todo lo necesario para trabajar, solo faltan un par 
 }
 ```
 
-# 🗄️ Configurando Prisma y la base de datos.
+## 🗄️ Configurando Prisma y la base de datos.
 
 Prisma es un ORM como lo es Sequelize entre otros, utilizare este ya que me pare mas sencillo de utilizar en comparación con Sequelize, fuero de eso no hay una gran diferencia permite conectase a diversas bases de datos. Para poder empezar a trabajar hay que inicializar prisma en nuestro proyecto para ello seguiremos una serie de pasos que al finalizar nos permitirá tener una base de datos conectada y funcional, con nuestros modelos, semillas y migraciones.
 
-## 🏁 Inicializando Prisma.
+### 🏁 Inicializando Prisma.
 
 Ya vimos como configurar nuestro proyecto ahora configuraremos nuestro ORM para trabar con el. Como ya hemos instalado Prisma en los pasos anteriores, ya podemos acceder a la linea de comandos de prisma por lo que ejecutaremos el comando de inicio que nos creara una nueva carpeta llamada ```prisma```, y un archivo ```.env```, dentro de la carpeta prisma tendremos un archivo llamado  ```prisma.schema``` en cual contiene las variables de conexión con nuestra base de datos y el esquema de los modelos que usaremos(tablas o entidades).
 
@@ -152,4 +152,14 @@ mysql://USER:PASSWORD@HOST:PORT/DATABASE?connection_limit=5&socket_timeout=3
 ```
 > 💡 En el URI se coloca un pool connection con máximo de 5 conexiones y un tiempo de espera de 3 segundos entre las peticiones.
 
-Ahora dentro de la carpeta ```prisma``` en nuestro schema procederemos a declarar los modelos que usaremos para crear nuestra base de datos. De igual manera puedes revisar la documentación sobre como crear un modelo en [Prisma Docs Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
+Ahora dentro de la carpeta ```prisma``` en nuestro schema procederemos a declarar los modelos que usaremos para crear nuestra base de datos. De igual manera puedes revisar la documentación sobre como crear un modelo en [Prisma Docs Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models), es recomendable tener la base de datos ya diseñada con anterioridad y tener un camino a seguir predefinido, este el diagrama de la base de datos que utilizare.
+
+![Diagrama_Base_de_Datos](/public/images/diagrama_DB.png)
+
+Bien ahora que tenemos nuestros modelos declarador poder iniciar con nuestra primera migración, que es la encargada de pasar nuestros modelos a lenguaje SQL y sincronizarlo con nuestra base de datos, y lo podemos realizar con el siguiente comando:
+
+```console
+npx prisma migrate dev --name init
+```
+> 💡 Con este comando le indicamos a prima que estamos creando una migración en modo desarrollo y con el --name le indicamos el nombre se le asignara a dicha migración.
+

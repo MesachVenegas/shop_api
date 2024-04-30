@@ -3,13 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 //? Registro de usuarios del sistema
 model User {
-  id            String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id            String   @id @default(cuid())
   avatar_url    String?
   username      String   @unique
   name          String?
@@ -26,8 +26,8 @@ model User {
 
 //? Registro de los clientes de la empresa
 model Client {
-  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
-  avatar_url  String?  @default("/assets/default-avatar.png")
+  id          String   @id @default(cuid())
+  avatar_url  String?  @default("")
   name        String
   last_name   String
   email       String?  @unique
@@ -42,7 +42,7 @@ model Client {
 
 //? Registro de provedores
 model Providers {
-  id          String   @id @default(uuid()) @map("_id") @db.ObjectId
+  id          String   @id @default(uuid())
   avatar_url  String?
   name        String
   email       String?  @unique
@@ -56,9 +56,9 @@ model Providers {
 
 //? Registro de ordenes generadas
 model Order {
-  id             String   @id @default(cuid()) @map("_id") @db.ObjectId
-  client_id      String   @db.ObjectId
-  user_id        String   @db.ObjectId
+  id             String   @id @default(cuid())
+  client_id      String
+  user_id        String
   addressed_name String
   pkg_long       Float
   pkg_width      Float
@@ -80,9 +80,9 @@ model Order {
 
 //? Registro de los gastos generados
 model Outlay {
-  id          String   @id @default(uuid()) @map("_id") @db.ObjectId
-  user_id     String   @db.ObjectId
-  provider_id String   @db.ObjectId
+  id          String   @id @default(uuid())
+  user_id     String
+  provider_id String
   description String
   mount       Float
   pieces      Int      @default(0)
@@ -94,7 +94,7 @@ model Outlay {
 
 //? Registro de productos disponibles
 model Product {
-  id            String   @id @default(uuid()) @map("_id") @db.ObjectId
+  id            String   @id @default(uuid())
   name          String
   description   String?
   delivery_type String
@@ -107,9 +107,9 @@ model Product {
 
 //? Registro de los productos de una orden
 model ProductsInOrder {
-  id         String  @id @default(uuid()) @map("_id") @db.ObjectId
-  order_id   String  @db.ObjectId
-  product_id String  @db.ObjectId
+  id         String  @id @default(uuid())
+  order_id   String
+  product_id String
   size       String?
   quanty     Int     @default(1)
   price      Float
@@ -121,7 +121,7 @@ model ProductsInOrder {
 //? Registro de el tipo de moneadas con el que se completo una orden
 model PaymentCashByOrder {
   id        String @id @default(cuid()) @map("_id")
-  order_id  String @db.ObjectId
+  order_id  String
   money_500 Float?
   money_200 Float?
   money_100 Float?

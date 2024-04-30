@@ -4,8 +4,11 @@ Esta es una guía hecha para recordar y afianzar la construcción de un API, es 
 
 <div align="center" style="display:flex; justify-content:center; align-items:center; gap:40px; padding:40px " >
   <img src="./public/nodejs.svg" alt="NodeJs" width="70" title="NodeJs">
+  <img width="20">
   <img src="./public/typescript.svg" alt="TypeScript" width="80" title="TypeScript">
+  <img width="20">
   <img src="./public/expressjs.svg" alt="ExpressJs" width="80" title="ExpressJs">
+  <img width="20">
   <img src="./public/mysql.svg" alt="Prisma" width="60" title="MySQL">
 </div>
 

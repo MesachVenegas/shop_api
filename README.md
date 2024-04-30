@@ -104,18 +104,12 @@ Ahora en nuestro nuevo archivo de configuración de typescript procedemos a ajus
 
 Ahora con TypeScript listo para trabajar instalaremos las dependencias básicas de nuestro proyecto y las dependencias de desarrollo:
 
-```bash
-#BUN
-bun i express morgan cors bcrypt dotenv @prisma/client
-#NPM
+```console
 npm i express morgan cors bcrypt dotenv @prisma/client
 ```
 Ahora las dependencias de desarrollo:
 
-```bash
-#BUN
-bun i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/cors
-#NPM
+```console
 npm i -D prisma ts-node-dev @types/express @types/bcrypt @types/morgan @types/cors
 ```
 
